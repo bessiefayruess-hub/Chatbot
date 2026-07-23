@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visuelles Wasserzeichen-Tool</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Visuelles Wasserzeichen-Tool</h1>
+    <p class="subtitle">Bild hochladen, Wasserzeichen einstellen, herunterladen &mdash; alles direkt im Browser, ohne Server-Upload.</p>
+  </header>
+
+  <main>
+    <section class="panel" id="upload-panel">
+      <h2>1. Bild hochladen</h2>
+      <div id="drop-zone" class="drop-zone">
+        <p>Bild hierher ziehen oder klicken zum Auswählen</p>
+        <input type="file" id="image-input" accept="image/*">
+      </div>
+    </section>
+
+    <section class="panel" id="settings-panel">
+      <h2>2. Wasserzeichen einstellen</h2>
+
+      <div class="field-group">
+        <label>Typ</label>
+        <div class="radio-row">
+          <label><input type="radio" name="wm-type" value="text" checked> Text</label>
+          <label><input type="radio" name="wm-type" value="logo"> Logo-Bild</label>
+        </div>
+      </div>
+
+      <div class="field-group" id="text-fields">
+        <label for="wm-text">Text</label>
+        <input type="text" id="wm-text" value="© Mein Name" maxlength="80">
+
+        <div class="row">
+          <div class="col">
+            <label for="wm-font">Schriftart</label>
+            <select id="wm-font">
+              <option value="Arial, sans-serif">Arial</option>
+              <option value="Georgia, serif">Georgia</option>
+              <option value="'Courier New', monospace">Courier New</option>
+              <option value="'Brush Script MT', cursive">Brush Script</option>
+              <option value="Impact, sans-serif">Impact</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="wm-color">Farbe</label>
+            <input type="color" id="wm-color" value="#ffffff">
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group" id="logo-fields" hidden>
+        <label for="logo-input">Logo-Bild</label>
+        <input type="file" id="logo-input" accept="image/*">
+      </div>
+
+      <div class="field-group">
+        <label for="wm-size">Größe: <span id="wm-size-val">48</span> px</label>
+        <input type="range" id="wm-size" min="8" max="300" value="48">
+      </div>
+
+      <div class="field-group">
+        <label for="wm-opacity">Deckkraft: <span id="wm-opacity-val">50</span>%</label>
+        <input type="range" id="wm-opacity" min="1" max="100" value="50">
+      </div>
+
+      <div class="field-group">
+        <label for="wm-rotation">Rotation: <span id="wm-rotation-val">0</span>°</label>
+        <input type="range" id="wm-rotation" min="-180" max="180" value="0">
+      </div>
+
+      <div class="field-group">
+        <label>Modus</label>
+        <div class="radio-row">
+          <label><input type="radio" name="wm-mode" value="single" checked> Einzelnes Wasserzeichen</label>
+          <label><input type="radio" name="wm-mode" value="tiled"> Gekachelt (über die ganze Fläche)</label>
+        </div>
+      </div>
+
+      <div class="field-group" id="position-fields">
+        <label>Position (Voreinstellung, oder im Bild per Ziehen verschieben)</label>
+        <div class="position-grid" id="position-grid">
+          <button data-x="0.05" data-y="0.05">↖</button>
+          <button data-x="0.5" data-y="0.05">↑</button>
+          <button data-x="0.95" data-y="0.05">↗</button>
+          <button data-x="0.05" data-y="0.5">←</button>
+          <button data-x="0.5" data-y="0.5">•</button>
+          <button data-x="0.95" data-y="0.5">→</button>
+          <button data-x="0.05" data-y="0.95">↙</button>
+          <button data-x="0.5" data-y="0.95">↓</button>
+          <button data-x="0.95" data-y="0.95">↘</button>
+        </div>
+      </div>
+
+      <div class="field-group" id="tile-fields" hidden>
+        <label for="wm-spacing">Kachel-Abstand: <span id="wm-spacing-val">150</span> px</label>
+        <input type="range" id="wm-spacing" min="50" max="400" value="150">
+      </div>
+    </section>
+
+    <section class="panel" id="preview-panel">
+      <h2>3. Vorschau &amp; Download</h2>
+      <div class="canvas-wrapper">
+        <canvas id="preview-canvas"></canvas>
+        <p id="empty-hint">Noch kein Bild geladen.</p>
+      </div>
+      <div class="download-row">
+        <label for="export-format">Format</label>
+        <select id="export-format">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg">JPEG</option>
+        </select>
+        <button id="download-btn" disabled>Bild herunterladen</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Alle Verarbeitungsschritte laufen lokal im Browser. Es werden keine Bilder an einen Server gesendet.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
