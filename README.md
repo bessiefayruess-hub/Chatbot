@@ -16,3 +16,13 @@ Ein kleines Hilfstool, um Bilder direkt im Browser mit einem sichtbaren Wasserze
 - `index.html` – Struktur/Formular
 - `style.css` – Layout und Styling
 - `script.js` – Bildverarbeitung über `<canvas>`
+
+## Agent: Wohnungssuche Pinneberg
+
+Unter `.claude/agents/wohnungssuche-pinneberg.md` liegt ein Claude-Code-Subagent, der Mietwohnungen in Pinneberg und Umgebung (Rellingen, Halstenbek, Tornesch, Elmshorn, Wedel, Schenefeld, Quickborn, Uetersen …) sucht, Inserate prüft, bewertet und vor typischen Betrugsmaschen warnt.
+
+1. Kriterien in `wohnungssuche/suchprofil.md` eintragen (Budget, Zimmer, Orte, Wünsche).
+2. In Claude Code z. B. schreiben: „Nutze den Agenten wohnungssuche-pinneberg und such mir passende Wohnungen.“
+3. Die Auswertung landet zusätzlich in `wohnungssuche/ergebnisse/JJJJ-MM-TT.md`.
+
+Der Agent kontaktiert keine Vermieter; er entwirft auf Wunsch nur Anschreiben.
